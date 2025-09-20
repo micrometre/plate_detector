@@ -15,6 +15,7 @@ build/
 *~
 *.log
 *.avi
+*.jpg
 *.webm
 # Logs
 logs
