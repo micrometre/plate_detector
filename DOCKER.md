@@ -24,6 +24,12 @@ docker-compose build
 
 ### 2. Run License Plate Detection
 
+#### Pre-download Models (Recommended)
+
+```bash
+# Pre-download PaddleOCR models to avoid downloading every time
+make download-models
+```
 
 #### Video Processing
 
@@ -35,7 +41,7 @@ make video VIDEO=my_video.mp4
 make video
 
 # Or using docker-compose directly
-docker-compose --profile video run --rm plate-detector-video
+docker compose run --rm plate-detector
 ```
 
 ### 3. Interactive Shell
@@ -65,7 +71,31 @@ plate_detector/
 └── ...
 ```
 
-## 🔧 Configuration
+## � **Model Caching**
+
+PaddleOCR downloads models (~16MB total) on first use:
+- `en_PP-OCRv3_det_infer.tar` (4MB) - Text detection  
+- `en_PP-OCRv4_rec_infer.tar` (10MB) - Text recognition
+- `ch_ppocr_mobile_v2.0_cls_infer.tar` (2MB) - Text orientation
+
+### **Cache Benefits:**
+- ✅ **Faster startup** - No download delays
+- ✅ **Offline capable** - Works without internet after first download  
+- ✅ **Bandwidth efficient** - Downloads once, uses forever
+
+### **Cache Commands:**
+```bash
+# Pre-download models (run once after build)
+make download-models
+
+# Clean model cache if needed
+make clean-models
+
+# Check cache status
+docker volume ls | grep paddleocr
+```
+
+## �🔧 Configuration
 
 ### Environment Variables
 

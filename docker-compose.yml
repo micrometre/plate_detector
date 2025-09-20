@@ -15,39 +15,21 @@ services:
     
     # Volume mounts for input/output
     volumes:
-      - ./test_data:/app/input:ro           # Read-only input directory
+      - ./test_data:/app/input:ro           # Read-only input directory  
       - ./output:/app/output:rw             # Read-write output directory
-      - ./videos:/app/videos:ro             # Optional: for video files
+      - paddleocr-models:/root/.paddleocr   # Cache PaddleOCR models
     
-    # Keep container running for interactive use
-    stdin_open: true
-    tty: true
-    
-    # Restart policy
-    restart: unless-stopped
-    
-    # Resource limits (optional)
-    deploy:
-      resources:
-        limits:
-          memory: 4G
-        reservations:
-          memory: 2G
-
-  # Alternative service for video processing  
-  plate-detector-video:
-    extends: plate-detector
-    container_name: uk-plate-detector-video
+    # Video processing command
     command: >
       python deploy/pipeline/pipeline.py
       --config deploy/pipeline/config/infer_cfg_ppvehicle.yml
-      --video_file videos/test_video.mp4
+      --video_file input/test_video.mp4
       --output_dir output
-      --save_video
-    profiles:
-      - video
+      --send_to_api
+      --save_frames
+      --frame_skip 5
 
-# Optional: create named volumes for persistent storage
+# Named volumes for persistent storage
 volumes:
-  output-data:
+  paddleocr-models:
     driver: local
