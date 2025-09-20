@@ -1,0 +1,107 @@
+# Arabic License Plate Character Dictionary
+# Characters commonly used in Arabic vehicle registration plates
+
+# Numbers (Arabic numerals - same as English)
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+# Arabic-Indic numerals (also commonly used)
+٠
+١
+٢
+٣
+٤
+٥
+٦
+٧
+٨
+٩
+
+# English letters (commonly used in many Arabic countries)
+A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z
+
+# Arabic alphabet letters (28 letters)
+ا
+ب
+ت
+ث
+ج
+ح
+خ
+د
+ذ
+ر
+ز
+س
+ش
+ص
+ض
+ط
+ظ
+ع
+غ
+ف
+ق
+ك
+ل
+م
+ن
+ه
+و
+ي
+
+# Additional Arabic letters with diacritics (commonly used)
+آ
+أ
+إ
+ة
+ى
+ؤ
+ئ
+
+# Special characters used in Arabic plates
+-
+·
+/
+|
+ 
+
+# Common Arabic words/abbreviations used in license plates (by country)
+# These may vary by specific Arab country regulations
+
+# Note: Different Arab countries may have specific character sets
+# This dictionary includes the most commonly used characters across
+# various Arabic-speaking regions
