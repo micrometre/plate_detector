@@ -1,0 +1,19 @@
+# PaddleDetection UK License Plate Recognition - CPU Version
+# Core PaddleDetection dependencies (CPU-only)
+paddlepaddle>=2.5.0  # CPU version instead of paddlepaddle-gpu
+# paddledetection>=2.8.1  # Not available on PyPI - installed from source if needed
+
+# OCR dependencies  
+paddleocr==2.7.0
+numpy>=1.26.0,<2.0.0  # Python 3.12 compatible, maintains ABI compatibility with OpenCV
+
+# Computer vision
+opencv-python>=4.5.0
+Pillow>=8.0.0
+
+# Utilities
+PyYAML>=5.4.0
+matplotlib>=3.3.0
+
+# Note: This configuration is optimized for CPU-only systems
+# GPU acceleration is disabled to ensure compatibility

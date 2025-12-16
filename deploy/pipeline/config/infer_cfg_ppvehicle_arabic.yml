@@ -1,0 +1,52 @@
+# PaddleDetection Arabic Vehicle License Plate Recognition Configuration
+# Configuration for Arabic vehicle license plate detection
+
+# Global settings
+Global:
+  print_config: True
+  use_gpu: True
+  enable_benchmark: False
+
+# Vehicle Plate Recognition Module - Arabic Configuration
+VEHICLE_PLATE:
+  # OCR detection model path (will use PaddleOCR default models)
+  det_model_dir: "output_inference/ar_PP-OCRv3_det_infer/"
+  det_limit_side_len: 480
+  det_limit_type: "max"
+  
+  # OCR recognition model path - Arabic for Arabic plates
+  rec_model_dir: "output_inference/ar_PP-OCRv3_rec_infer/"
+  rec_image_shape: [3, 48, 320]
+  rec_batch_num: 6
+  
+  # Note: PaddleOCR's Arabic models use built-in character sets
+  # Custom dictionaries are not needed and can cause index errors
+  
+  # Pipeline type
+  basemode: "idbased"
+  
+  # Enable/disable the module
+  enable: True
+  
+  # Arabic-specific confidence thresholds (adjusted for Arabic script complexity)
+  det_db_thresh: 0.3
+  det_db_box_thresh: 0.5
+  
+  # Recognition threshold for Arabic plates
+  rec_thresh: 0.5
+  
+  # Language setting for Arabic
+  ocr_language: "ar"
+
+# Vehicle Detection (using simplified approach for this minimal example)
+VEHICLE_DETECTION:
+  # In full implementation, this would use PP-YOLOE
+  # For minimal example, we'll use the entire image as vehicle region
+  enable: True
+  
+# Output settings
+OUTPUT:
+  # Output visualization images
+  output_dir: "./output"
+  save_images: True
+  save_results: True

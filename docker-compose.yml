@@ -1,0 +1,39 @@
+services:
+  plate-detector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: plate-detector:latest
+    container_name: uk-plate-detector
+    
+    # Use host networking to access localhost:8080 on the host
+    network_mode: host
+    
+    # CPU configuration
+    environment:
+      - CUDA_VISIBLE_DEVICES=""
+      - OMP_NUM_THREADS=4
+      - MKL_NUM_THREADS=4
+      - PYTHONUNBUFFERED=1
+    
+    # Volume mounts for input/output
+    volumes:
+      - ./test_data:/app/input:ro           # Read-only input directory  
+      - ../public:/app/public:ro            # Read-only uploaded files directory
+      - ./output:/app/output:rw             # Read-write output directory
+      - paddleocr-models:/root/.paddleocr   # Cache PaddleOCR models
+    
+    # Video processing command
+    command: >
+      python deploy/pipeline/pipeline.py
+      --config deploy/pipeline/config/infer_cfg_ppvehicle.yml
+      --video_file input/test_video.mp4
+      --output_dir output
+      --send_to_api
+      --save_frames
+      --frame_skip 5
+
+# Named volumes for persistent storage
+volumes:
+  paddleocr-models:
+    driver: local
